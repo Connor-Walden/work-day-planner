@@ -1,7 +1,6 @@
 // These keep track of where the planner starts, and how many hours it will have on it
 const NUM_HOURS = 8;
 const START_HOUR = 9;
-
 $(document).ready(function() {
   for(var i = START_HOUR; i < START_HOUR + NUM_HOURS + 1; i++) {
     
@@ -34,11 +33,30 @@ $(document).ready(function() {
     // position relative so the child can be absolute and moved where it should be
     noteEl.attr("style", "position: relative;");
     // append the textarea to the noteEl element so the user can input
-    noteEl.append("<textarea id=\"noteInput\" style=\"height: 30px; width: 100%; position:absolute; top: 35px; background-color: white;\"></textarea>");
+    noteEl.append("<textarea id=\"noteInput\" style=\"height: 30px; width: 90%; position:absolute; top: 35px; background-color: white;\"></textarea>");
+
+    // save element contains the button used to save the user input to local storage.
+    var saveEl = $("<div>");
+    // takes up 2 columns and the button appended below needs to be centered
+    saveEl.attr("class", "col-2 justify-content-center");
+    saveEl.attr("style", "padding: 20px;");
+
+    // Save button element 
+    var saveBtn = $("<div>");
+    // make save button element a bootstrap button
+    saveBtn.attr("class", "btn btn-primary");
+    // size and position the button in the correct place.
+    saveBtn.attr("style", "width: 100%; padding: 18px 0;");
+    // the save button needs to let the user know what it is...
+    saveBtn.text("SAVE");
+
+    // adding the save button the the save element
+    saveEl.append(saveBtn);
 
     // Append all elements that reside within the time block to it
     timeBlockEl.append(timeSlotEl);
     timeBlockEl.append(noteEl);
+    timeBlockEl.append(saveEl);
     
     // append the current time block to the container that already exists in this application.
     $(".container").append(timeBlockEl);
