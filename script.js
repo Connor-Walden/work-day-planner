@@ -15,7 +15,7 @@ $(document).ready(function() {
     // The row that contains all of the information for this hour of the day planner
     var timeBlockEl = $("<div>");
     timeBlockEl.attr("class", "row");
-    timeBlockEl.attr("style", "border-radius: 5px; background-color: grey;");
+    timeBlockEl.attr("style", "border-radius: 5px; background-color: grey; height: 100px;");
 
     // Now, append a bootstrap column for the left side of the row (time slot)
     var timeSlotEl = $("<div>");
@@ -28,11 +28,17 @@ $(document).ready(function() {
 
     // Note element is what will contain the note for hour i
     var noteEl = $("<div>");
+    // this element wants to be the majority of the row, as it is the note section and may need 
+    // lot of room
     noteEl.attr("class", "col-8");
-    noteEl.attr("style", "border: 1px solid black;");
+    // position relative so the child can be absolute and moved where it should be
+    noteEl.attr("style", "position: relative;");
+    // append the textarea to the noteEl element so the user can input
+    noteEl.append("<textarea id=\"noteInput\" style=\"height: 30px; width: 100%; position:absolute; top: 35px; background-color: white;\"></textarea>");
 
     // Append all elements that reside within the time block to it
     timeBlockEl.append(timeSlotEl);
+    timeBlockEl.append(noteEl);
     
     // append the current time block to the container that already exists in this application.
     $(".container").append(timeBlockEl);
